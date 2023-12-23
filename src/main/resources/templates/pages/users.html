@@ -1,0 +1,75 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/dashboard.html}">>
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="main-content container-fluid" layout:fragment="content">
+            <div class="page-title">
+                <div class="row">
+                    <div class="col-12 col-md-6 order-md-1 order-last">
+                        <h3>Table</h3>
+                        <p class="text-subtitle text-muted">Examples for opt-in styling of tables (given their prevalent use in JavaScript plugins) with Bootstrap.</p>
+                    </div>
+                    <div class="col-12 col-md-6 order-md-2 order-first">
+                        <nav aria-label="breadcrumb" class='breadcrumb-header'>
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html">Liste des utilisateurs</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Table</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Basic Tables start -->
+            <div class="row" id="basic-table">
+                <div class="col-12 col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Table with outer spacing</h4>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-body">
+                                <p class="card-text">Using the most basic table up, here’s how
+                                    <code>.table</code>-based tables look in Bootstrap. You can use any example
+                                    of below table for your table and it can be use with any type of bootstrap tables.</p>
+                                <!-- Table with outer spacing -->
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Nom</th>
+                                                <th>Prénom</th>
+                                                <th>Sexe</th>
+                                                <th>Email</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!--tr th:each="prod,iterStat : ${prods}" th:class="${iterStat.odd}? 'odd'">
+                                                <td th:text="${prod.name}">Onions</td>
+                                                <td th:text="${prod.price}">2.41</td>
+                                                <td th:text="${prod.inStock}? #{true} : #{false}">yes</td>
+                                            </tr-->
+                                            <tr th:each="user,iterStat : ${users}" th:class="${iterStat.odd}? 'odd'">
+                                                
+                                                <td th:text="${user.nom}">Onions</td>
+                                                <td th:text="${user.prenom}">Onions</td>
+                                                <td th:text="${user.sexe} == M ? #{Masculin}:#{Féminin}"></td>
+                                                <td th:text="${user.email}">Onions</td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -11,7 +11,7 @@ import ifnti.l3.jee.repositories.UserRepository;
 import java.util.List;
 import java.util.Optional;
 
-
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,7 +21,9 @@ import org.springframework.ui.Model;
 import ifnti.l3.jee.entities.Role;
 import ifnti.l3.jee.entities.User;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.thymeleaf.context.Context;
 
 
 /**
@@ -37,7 +39,11 @@ public class UserController {
     RoleRepository roleRepository;
     
     @GetMapping("/user/index")
-    public String listeUsers(Model model){
+    public String listeUsers(Model model,HttpServletRequest request){
+
+        Context context = new Context();
+        
+        context.setVariable("request", request);
         
         List<User> users = userRepository.findAll();
         model.addAttribute("users",users);
@@ -63,6 +69,11 @@ public class UserController {
         
     return "pages/user-edit";
     }
+
+@ModelAttribute("servletPath")
+  String getRequestServletPath(HttpServletRequest request) {
+    return request.getServletPath();
+  }
     
     
 

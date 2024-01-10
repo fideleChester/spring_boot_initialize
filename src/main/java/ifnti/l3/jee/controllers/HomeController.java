@@ -7,10 +7,14 @@ package ifnti.l3.jee.controllers;
 import ifnti.l3.jee.entities.User;
 import ifnti.l3.jee.repositories.UserRepository;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -41,5 +45,10 @@ public class HomeController {
         return "pages/users";
     
     }
+
+        @ModelAttribute("servletPath")
+  String getRequestServletPath(HttpServletRequest request) {
+    return request.getServletPath();
+  }
     
 }

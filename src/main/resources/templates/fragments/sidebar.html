@@ -10,17 +10,17 @@
         <div id="sidebar" class='active' th:fragment="sidebar">
             <div class="sidebar-wrapper active">
                 <div class="sidebar-header">
-                    <img th:src="@{/images/logo.svg}" alt="" srcset="">
+                    <img th:src="@{/images/icon.png}" alt="" srcset="">
                 </div>
                 <div class="sidebar-menu">
                     <ul class="menu">
 
 
-                        <li class='sidebar-title'>Main Menu</li>
+                        <li class='sidebar-title'>Menu principal</li>
 
 
 
-                        <li class="sidebar-item active ">
+                        <li class="sidebar-item  " th:classappend="${#strings.startsWith(servletPath, '/home')} ? 'active' : ''">
 
                             <a th:href="@{/home}" class='sidebar-link'>
                                 <i data-feather="home" width="20"></i> 
@@ -32,15 +32,15 @@
 
 
 
-                        <li class="sidebar-item  has-sub">
+                        <li class="sidebar-item  has-sub" th:classappend="${#strings.startsWith(servletPath, '/user/')} ? 'active' : ''">
 
-                            <a href="#" class='sidebar-link'>
+                            <a  href="#" class='sidebar-link'>
                                 <i data-feather="triangle" width="20"></i> 
                                 <span>Users</span>
                             </a>
 
 
-                            <ul class="submenu ">
+                            <ul class="submenu " th:classappend="${#strings.startsWith(servletPath, '/user/')} ? 'active' : ''">
 
                                 <li>
                                     <a th:href="@{/user/index}">Liste des utilisateurs</a>
@@ -104,7 +104,7 @@
 
 
 
-                        <li class="sidebar-item  has-sub">
+                        <li class="sidebar-item  has-sub" th:classappend="${#strings.startsWith(servletPath, '/role/index')} ? 'active' : ''">
 
                             <a href="#" class='sidebar-link'>
                                 <i data-feather="briefcase" width="20"></i> 
@@ -112,7 +112,7 @@
                             </a>
 
 
-                            <ul class="submenu ">
+                            <ul class="submenu " th:classappend="${#strings.startsWith(servletPath, '/role/index')} ? 'active' : '' ">
 
                                 <li>
                                     <a th:href="@{/role/index}">Liste des rôles</a>

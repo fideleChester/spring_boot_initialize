@@ -85,6 +85,7 @@ public class UserCrudController {
             user.setLastname(userUpdated.getLastname());
             user.setUsername(userUpdated.getUsername());
             user.setRoles(userUpdated.getRoles());
+            user.setEnabled(userUpdated.getEnabled());
 
         userRepository.save(user);
         

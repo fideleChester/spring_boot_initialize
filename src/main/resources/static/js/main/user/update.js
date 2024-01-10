@@ -5,11 +5,23 @@ var SPUpdateUser = (function () {
     var cancelButton;
     var form;
     var modal;
+    var checkbox;
     const config = {
         headers: {
             "Content-Type": "application/json",
         },
     };
+
+    var handleCheckBox = function () {
+        if (checkbox.checked) {
+            checkbox.value = "true";
+            console.log("c");
+        } else {
+            checkbox.value = "false";
+
+        }
+    
+    }
 
 
     // Handle form validation and submittion
@@ -17,6 +29,7 @@ var SPUpdateUser = (function () {
         // // Stepper custom navigation
                 try {
                     submitButton.addEventListener("click", function (e) {
+                      handleCheckBox();
                         var formData = new FormData(form);
 
                         const swalWithBootstrapButtons = Swal.mixin({
@@ -98,6 +111,7 @@ var SPUpdateUser = (function () {
             submitButton = document.getElementById("kt_modal_update_user_submit");
             cancelButton = document.getElementById("kt_modal_update_user_cancel");
             editButtons = document.querySelectorAll(".kt_modal_update_user");
+            checkbox = document.querySelector('input[name="enabled"]');
             handleForm();
 
         },

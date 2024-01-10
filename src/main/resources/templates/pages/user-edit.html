@@ -51,8 +51,18 @@
                                             <input type="email" id="email-id-column" class="form-control" name="email" th:value="${user.get().getEmail()}">
                                         </div>
                                     </div>
+                                    
+                                        <div class="custom-control custom-checkbox"  >
+                                            <input type="checkbox" class="form-check-input form-check-primary form-check-glow" name="enabled" 
+                                            th:checked="${user.get().getEnabled() == true}"
+                                                id="enabled" >
+                                            <label class="form-check-label" th:for="enabled" >Actif</label>
+                                        </div>
+                                   
                                 </div>
                                 <input type="hidden" th:value="${user.get().getId()}" name="id">
+
+                                
                                 <!-- Checkbox Sizes start -->
     
         <div class="row">
@@ -101,5 +111,8 @@
                 </div>
             </div>
         </div>
+
+
+            
     </body>
 </html>

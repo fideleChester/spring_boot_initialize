@@ -4,11 +4,14 @@
  */
 package ifnti.l3.jee.controllers;
 
+import ifnti.l3.jee.entities.Role;
 import ifnti.l3.jee.entities.User;
+import ifnti.l3.jee.repositories.RoleRepository;
 import ifnti.l3.jee.repositories.UserRepository;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,13 +29,19 @@ public class HomeController {
 
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    RoleRepository roleRepository; 
     
     @RequestMapping("/home")
-    public String homePage(Model model){
+    public String homePage(Model model,HttpSession session){
         
            List<User> users = userRepository.findAll();
+            List<Role> roles = roleRepository.findAll();
+
         
         model.addAttribute("users",users);
+        model.addAttribute("auth",session.getAttribute("userName"));
+        model.addAttribute("roles",roles);
         
         return "pages/main";
     

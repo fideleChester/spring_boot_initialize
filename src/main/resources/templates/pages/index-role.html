@@ -1,0 +1,118 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/dashboard.html}">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="main-content container-fluid" layout:fragment="content">
+            <section class="section">
+                <div class="row">
+                    <div class="col-2 col-md-2 col-lg-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Gestion des rôles</h4>
+                            </div>
+                            <div class="card-body d-flex flex-column align-content-center align-items-center w-auto">
+                                
+                                
+                                <!-- <h3>Heading 3 <span class="badge bg-secondary">New</span></h3> -->
+                                <div class="avatar avatar-xl me-3 ">
+                                    <img th:src="@{/images/icon.png}" alt="" srcset="">
+                                </div>
+                                <!-- <h4>Heading 4 <span class="badge bg-secondary">New</span></h4> -->
+                                <h5>Nombre de rôle <span th:text="${roles.size()}" class="badge bg-secondary">New</span></h5>
+                               <!--  <h6>Heading 6 <span class="badge bg-secondary">New</span></h6> -->
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Liste des rôles</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="buttons">
+
+
+                                    
+                                    <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#inlineForm">
+                                        Ajouter un rôle 
+                                    </button>
+
+                                    <div class="section-title mt-0">Tous</div>
+                                    <!-- <a th:each="role : ${roles}" href="#" class="alert alert-light-warning color-warning m-lg-2 alert-dismissible text-warning " > -->
+                                         <!-- <span class="m-lg-3" th:text="${role.libelle}"></span><span class="badge bg-warning">4</span> -->
+                                    <!-- </a> -->
+
+                                    <div class="btn-group mb-1 " th:each="role : ${roles}">
+                                        <div class="dropdown">
+                                            <button class="btn btn-secondary dropdown-toggle me-1 " type="button" 
+                                                id="dropdownMenuButtonSec" data-bs-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false">
+                                                <span class="m-lg-3" th:text="${role.libelle}"></span><span class="badge bg-warning">4</span> 
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonSec">
+                                                <a class="dropdown-item" href="#">Show</a>
+                                                <a class="dropdown-item" href="#">Edit</a>
+                                                <a class="dropdown-item kt-modal-role-delete text-danger" th:data-id="${role.id}" href="#">Delete</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    
+                                   
+                                    
+
+                                    <!--login form Modal -->
+                                    <div class="modal fade text-left" id="inlineForm" tabindex="-1" role="dialog"
+                                    aria-labelledby="myModalLabel33" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h4 class="modal-title" id="myModalLabel33">Login Form </h4>
+                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                            <i data-feather="x"></i>
+                                        </button>
+                                        </div>
+                                        <form action="#" id="kt_modal_add_role_form" method="post">
+                                        <div class="modal-body">
+                                            <label>Libelle: </label>
+                                            <div class="form-group">
+                                            <input type="text" placeholder="Name" class="form-control" name="libelle">
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal" id="kt_modal_add_role_cancel">
+                                            <i class="bx bx-x d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">Close</span>
+                                            </button>
+                                            <button type="button" class="btn btn-primary ml-1" data-bs-dismiss="modal" id="kt_modal_add_role_submit">
+                                            <i class="bx bx-check d-block d-sm-none"></i>
+                                            <span class="d-none d-sm-block">Add</span>
+                                            </button>
+                                        </div>
+                                        </form>
+                                    </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                   
+                   
+                </div>
+            </section>
+        </div>
+
+
+
+       
+        <script th:src="@{/js/main/role/create.js}"></script>
+    </body>
+</html> 

@@ -4,6 +4,10 @@
  */
 package ifnti.l3.jee.controllers;
 
+import ifnti.l3.jee.entities.User;
+import ifnti.l3.jee.repositories.UserRepository;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,15 +19,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class HomeController {
-    @Value("${spring.application.name}")
-    String appName;
+
+    @Autowired
+    UserRepository userRepository;
     
     @RequestMapping("/home")
     public String homePage(Model model){
-        model.addAttribute("appName",appName);
+        
+           List<User> users = userRepository.findAll();
+        
+        model.addAttribute("users",users);
+        
         return "pages/main";
     
     }
+    
+    
+    
      @RequestMapping("/users_")
     public String usersPage(Model model){
         return "pages/users";

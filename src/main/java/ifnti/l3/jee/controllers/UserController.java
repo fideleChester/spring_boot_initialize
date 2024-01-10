@@ -4,13 +4,26 @@
  */
 package ifnti.l3.jee.controllers;
 
+import ifnti.l3.jee.repositories.RoleRepository;
 import ifnti.l3.jee.repositories.UserRepository;
+
+
 import java.util.List;
+import java.util.Optional;
+
+
+
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
+import ifnti.l3.jee.entities.Role;
 import ifnti.l3.jee.entities.User;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+
 /**
  *
  * @author loyal
@@ -20,21 +33,37 @@ public class UserController {
     
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    RoleRepository roleRepository;
     
-    @GetMapping("/users")
+    @GetMapping("/user/index")
     public String listeUsers(Model model){
         
-        //User user1 = new User("eklou","fidele","M","f@đ.com","12345","fidele");
-        
-        
-        
-        //userRepository.save(user1);
-        
-        
         List<User> users = userRepository.findAll();
-        
         model.addAttribute("users",users);
+        
+        List<Role> roles = roleRepository.findAll();
+        model.addAttribute("roles",roles);
+
+        roleRepository.findById(Long.parseLong("1"));
+        
+        
         
     return "pages/users";
     }
+
+    @GetMapping("/user/edit/{id}")
+    public String editUser(@PathVariable String id,Model model){
+        
+        Optional<User> user = userRepository.findById(Long.parseLong(id));  
+        model.addAttribute("user",user);
+
+        List<Role> roles = roleRepository.findAll();
+        model.addAttribute("roles",roles);
+        
+    return "pages/user-edit";
+    }
+    
+    
+
 }

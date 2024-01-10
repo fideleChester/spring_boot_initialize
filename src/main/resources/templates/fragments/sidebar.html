@@ -43,7 +43,7 @@
                             <ul class="submenu ">
 
                                 <li>
-                                    <a th:href="@{/users}">Liste des utilisateurs</a>
+                                    <a th:href="@{/user/index}">Liste des utilisateurs</a>
                                 </li>
 
                                 <!--li>
@@ -102,30 +102,28 @@
 
                         </li>
 
-<!--
+
 
                         <li class="sidebar-item  has-sub">
 
                             <a href="#" class='sidebar-link'>
                                 <i data-feather="briefcase" width="20"></i> 
-                                <span>Extra Components</span>
+                                <span>Rôles</span>
                             </a>
 
 
                             <ul class="submenu ">
 
                                 <li>
-                                    <a href="component-extra-avatar.html">Avatar</a>
+                                    <a th:href="@{/role/index}">Liste des rôles</a>
                                 </li>
 
-                                <li>
-                                    <a href="component-extra-divider.html">Divider</a>
-                                </li>
+                               
 
                             </ul>
 
                         </li>
-
+<!--
 
 
                         <li class='sidebar-title'>Forms &amp; Tables</li>

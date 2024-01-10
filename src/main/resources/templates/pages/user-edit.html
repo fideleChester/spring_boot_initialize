@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/dashboard.html}">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container" layout:fragment="content">
+            <div class="row">
+                <div class="col-md-7 col-sm-12 mx-auto">
+                    <div class="card pt-4">
+                        <div class="card-body">
+                            
+                            <form action="" method="post" id="kt_modal_update_user_form">
+
+                                <div class="row modal-body">
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="first-name-column">First Name</label>
+                                            <input type="text" id="first-name-column" class="form-control"  name="firstname" th:value="${user.get().getFirstname()}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="last-name-column">Last Name</label>
+                                            <input type="text" id="last-name-column" class="form-control"  name="lastname" th:value="${user.get().getLastname()}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="username-column">Username</label>
+                                            <input type="text" id="username-column" class="form-control" name="username" th:value="${user.get().getUsername()}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="country-floating">Password</label>
+                                            <input type="password" id="country-floating" class="form-control" name="password">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="company-column">Contact</label>
+                                            <input type="text" id="company-column" class="form-control" name="contact" th:value="${user.get().getContact()}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-12">
+                                        <div class="form-group">
+                                            <label for="email-id-column">Email</label>
+                                            <input type="email" id="email-id-column" class="form-control" name="email" th:value="${user.get().getEmail()}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" th:value="${user.get().getId()}" name="id">
+                                <!-- Checkbox Sizes start -->
+    
+        <div class="row">
+            <div class="col-12">
+           
+                    <div class="card-header">
+                        <h4 class="card-title">La liste des rôles</h4>
+                    </div>
+        
+                        <div class="card-body">
+                            
+                            <ul class="list-unstyled mb-0">
+                                <li class="d-inline-block  me-2" th:each="role : ${roles}">
+                                  
+                                    <div class='form-check form-check-sm' >
+                                        <div class="custom-control custom-checkbox"  >
+                                            <input type="checkbox" class="form-check-input form-check-primary form-check-glow" name="roles[]" 
+                                            th:checked="${user.get().getRoles().contains(role)}"
+                                                th:id="${'box'+role.id}" th:value="${role.id}">
+                                            <label class="form-check-label" th:for="${'box'+role.id}" th:text="${role.libelle}">Small</label>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                       
+                    </div>
+              
+            </div>
+        </div>
+
+    <!-- Checkbox Sizes end -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-light-secondary"  id="kt_modal_update_user_cancel">
+                                        <i class="bx bx-x d-block d-sm-none"></i>
+                                        <span class="d-none d-sm-block">Close</span>
+                                    </button>
+                                    <button type="button" class="btn btn-primary ml-1"  id="kt_modal_update_user_submit">
+                                        <i class="bx bx-check d-block d-sm-none"></i>
+                                        <span class="d-none d-sm-block">Enregistrer</span>
+                                    </button>
+                                </div>
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

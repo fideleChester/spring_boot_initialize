@@ -14,9 +14,6 @@ public class Role  {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Basic
-	@Column(length = 30, nullable = false,insertable=true)
-	private String code;
 
 	@Basic
 	@Column(length = 30, nullable = false,insertable=true)
@@ -25,16 +22,13 @@ public class Role  {
 	
 	
 
-	public Role(String code, String libelle) {
+	public Role(String id) {
 		super();
-		this.code = code;
-		this.libelle = libelle;
+
+		this.id = Long.parseLong(id);
+	
 	}
 	
-	public Role(Long id_role) {
-		super();
-		this.id = id_role;
-	}
 	
 	public Role() {}
 	
@@ -42,7 +36,7 @@ public class Role  {
 
 	@Override
 	public String toString() {
-		return "Role [id=" + id + ", code=" + code + ", libelle=" + libelle + "]";
+		return "Role [ libelle=" + libelle + ",id=" + id + "]";
 	}
 
 
@@ -55,16 +49,10 @@ public class Role  {
 		this.id = id;
 	}
 
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
+	
 
 	public String getLibelle() {
-		return libelle;
+		return this.libelle;
 	}
 
 	public void setLibelle(String libelle) {

@@ -6,7 +6,7 @@ var SPUpdateUser = (function () {
     var form;
     var modal;
     var checkbox;
-    const config = {
+    var config = {
         headers: {
             "Content-Type": "application/json",
         },

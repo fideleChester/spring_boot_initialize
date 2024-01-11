@@ -34,8 +34,8 @@
                             <div class="card-content">
                             <div class="card-body">
                                 <div class="form-group">
-                                <h4 class="card-title">Modal with Login Form</h4>
-                                <p> Created Simple Login Form.</p>
+                                <h4 class="card-title">Welcome to role management</h4>
+                                <p> Create, Update and Delete roles.</p>
                                 <!-- Button trigger for login form modal -->
                                
             
@@ -49,6 +49,7 @@
                                             <i data-feather="x"></i>
                                         </button>
                                     </div>
+                                    <form action="#" id="kt_modal_update_role_form" method="post">
                                     <div class="modal-body">
                                         <div class="modal-body">
                                             <label>Libelle: </label>
@@ -57,13 +58,16 @@
                                             </div>
                                            
                                         </div>
+                                        <input type="hidden"  name="id">
+
                                     </div>
+                                    </form>
                                     <div class="modal-footer">
                                         <button type="button" class="btn" data-bs-dismiss="modal" id="kt-close-update-role">
                                             <i class="bx bx-x d-block d-sm-none"></i>
                                             <span class="d-none d-sm-block">Close</span>
                                         </button>
-                                        <button type="button" class="btn btn-primary ml-1" data-bs-dismiss="modal" id="kt-submit-update-role">
+                                        <button type="button" class="btn btn-primary ml-1" data-bs-dismiss="modal" id="kt_submit_update_role">
                                             <i class="bx bx-check d-block d-sm-none"></i>
                                             <span class="d-none d-sm-block">Update</span>
                                         </button>

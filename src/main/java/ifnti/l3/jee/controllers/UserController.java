@@ -73,8 +73,7 @@ public class UserController {
 @ModelAttribute("servletPath")
   String getRequestServletPath(HttpServletRequest request) {
     return request.getServletPath();
+
   }
-    
-    
 
 }

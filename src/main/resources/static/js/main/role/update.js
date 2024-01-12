@@ -4,6 +4,7 @@ var SPUpdateRole = (function () {
   var submitButton;
   var modal;
   var form;
+  var cancelButton;
   var config = {
     headers: {
         "Content-Type": "application/json",
@@ -110,6 +111,42 @@ var SPUpdateRole = (function () {
 
            
         })
+
+        cancelButton.addEventListener("click", function (e) {
+          e.preventDefault();
+          Swal.fire({
+            showClass: {
+              popup: `
+                animate__animated
+                animate__fadeInUp
+                animate__faster
+              `
+            },
+            hideClass: {
+              popup: `
+                animate__animated
+                animate__fadeOutDown
+                animate__faster
+              `
+            },
+            text: "Etes-vous sûr de vouloir annuler ?",
+            icon: "warning",
+            showCancelButton: true,
+            buttonsStyling: false,
+            confirmButtonText: "Oui, Annuler !",
+            cancelButtonText: "Non, retourner",
+            customClass: {
+              confirmButton: "btn btn-primary",
+              cancelButton: "btn btn-active-light",
+            },
+          }).then(function (result) {
+            if (result.isConfirmed) {
+              modal.classList.remove("show");
+              modal.setAttribute("aria-hidden", "true");
+              modal.style.display = "none";
+            }
+          })
+        })
            
           
     } catch (error) {
@@ -125,8 +162,9 @@ var SPUpdateRole = (function () {
       modal = document.getElementById("inlineForm1");
       submitButton = document.getElementById("kt_submit_update_role");
       form = document.getElementById("kt_modal_update_role_form");
+      cancelButton = document.getElementById("kt_cancel_update_role");
       handle();
-      console.log(modal);
+
     },
   };
 })();

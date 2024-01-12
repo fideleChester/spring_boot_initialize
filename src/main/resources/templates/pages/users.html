@@ -156,6 +156,8 @@
                                     <td>
                                        
                                         <a class="btn btn-outline-blue btn-sm bg-primary text-white " th:href="@{/user/edit/{id}(id=${user.id})}">Edit</a>
+                                        <a class="btn btn-outline-secondary  btn-sm text-whitebg-secondary text-white bg-secondary " th:href="@{/user/show/{id}(id=${user.id})}">Show</a>
+
                                         <span class="btn btn-outline-danger btn-sm  text-whitebg-danger kt_modal_delete_user" th:data-id="${user.id}" >Delete</span>
                                     </td>
 

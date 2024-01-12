@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/dashboard.html}">
+    <head>
+        <title>App | Edit user</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container" layout:fragment="content">
+            <div class="row">
+                <div class="col-12 col-md-6 col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title d-flex">
+                                <span class="fw-bolder">Nom: </span>  <h4 th:text="${user.get().getLastname()}"></h4>
+                            </div>
+                            
+                            
+                            <div class="card-title d-flex">
+                                 <h4 class="fw-bolder text-sm" th:text="${user.get().getFirstname()}"></h4>
+                            </div>
+
+                        </div>
+                        <div class="card-body ">
+                            <p class="text-muted">Les informations supplémentaire</p>
+                            <div class="buttons">        
+
+                                <span  class="btn btn-dark">
+                                    <span>Email: </span> <span class="badge bg-transparent" th:text="${user.get().getEmail()}">4</span>
+                                </span>
+                                <span  class="btn btn-dark">
+                                    <span>Username: </span> <span class="badge bg-transparent" th:text="${user.get().getUsername()}">4</span>
+                                </span>
+                                <span  class="btn btn-dark">
+                                    <span>Contact: </span> <span class="badge bg-transparent" th:text="${user.get().getContact()}">4</span>
+                                </span>
+                               
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Ses rôles</h4>
+                        </div>
+                        <div class="card-body">
+                            
+                            <div class="buttons">
+                                <span th:if="${user.get().getRoles().size() == 0}"> Aucun role</span>
+                                <span  th:each="role : ${user.get().getRoles()}" th:text="${role.getLibelle()}" class="btn disabled btn-primary"></span>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+            
+    </body>
+</html>

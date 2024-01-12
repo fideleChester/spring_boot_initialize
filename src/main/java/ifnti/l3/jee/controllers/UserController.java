@@ -70,6 +70,18 @@ public class UserController {
     return "pages/user-edit";
     }
 
+    @GetMapping("/user/show/{id}")
+    public String shoawUser(@PathVariable String id,Model model){
+        
+        Optional<User> user = userRepository.findById(Long.parseLong(id));  
+        model.addAttribute("user",user);
+
+       
+        model.addAttribute("roles",user.get().getRoles());
+        
+    return "pages/show";
+    }
+
 @ModelAttribute("servletPath")
   String getRequestServletPath(HttpServletRequest request) {
     return request.getServletPath();

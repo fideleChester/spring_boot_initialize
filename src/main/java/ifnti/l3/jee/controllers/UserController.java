@@ -7,7 +7,6 @@ package ifnti.l3.jee.controllers;
 import ifnti.l3.jee.repositories.RoleRepository;
 import ifnti.l3.jee.repositories.UserRepository;
 
-
 import java.util.List;
 import java.util.Optional;
 
@@ -25,64 +24,60 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.thymeleaf.context.Context;
 
-
 /**
  *
  * @author loyal
  */
 @Controller
 public class UserController {
-    
-    @Autowired
-    UserRepository userRepository;
-    @Autowired
-    RoleRepository roleRepository;
-    
-    @GetMapping("/user/index")
-    public String listeUsers(Model model,HttpServletRequest request){
 
-        Context context = new Context();
-        
-        context.setVariable("request", request);
-        
-        List<User> users = userRepository.findAll();
-        model.addAttribute("users",users);
-        
-        List<Role> roles = roleRepository.findAll();
-        model.addAttribute("roles",roles);
+  @Autowired
+  UserRepository userRepository;
+  @Autowired
+  RoleRepository roleRepository;
 
-        roleRepository.findById(Long.parseLong("1"));
-        
-        
-        
+  @GetMapping("/user/index")
+  public String listeUsers(Model model, HttpServletRequest request) {
+
+    Context context = new Context();
+
+    context.setVariable("request", request);
+
+    List<User> users = userRepository.findAll();
+    model.addAttribute("users", users);
+
+    List<Role> roles = roleRepository.findAll();
+    model.addAttribute("roles", roles);
+
+    roleRepository.findById(Long.parseLong("1"));
+
     return "pages/users";
-    }
+  }
 
-    @GetMapping("/user/edit/{id}")
-    public String editUser(@PathVariable String id,Model model){
-        
-        Optional<User> user = userRepository.findById(Long.parseLong(id));  
-        model.addAttribute("user",user);
+  @GetMapping("/user/edit/{id}")
+  public String editUser(@PathVariable String id, Model model) {
 
-        List<Role> roles = roleRepository.findAll();
-        model.addAttribute("roles",roles);
-        
+    Optional<User> user = userRepository.findById(Long.parseLong(id));
+    model.addAttribute("user", user);
+
+    List<Role> roles = roleRepository.findAll();
+    model.addAttribute("roles", roles);
+
     return "pages/user-edit";
-    }
+  }
 
-    @GetMapping("/user/show/{id}")
-    public String shoawUser(@PathVariable String id,Model model){
-        
-        Optional<User> user = userRepository.findById(Long.parseLong(id));  
-        model.addAttribute("user",user);
+  @GetMapping("/user/show/{id}")
+  public String shoawUser(@PathVariable String id, Model model) {
 
-       
-        model.addAttribute("roles",user.get().getRoles());
-        
+    Optional<User> user = userRepository.findById(Long.parseLong(id));
+    model.addAttribute("user", user);
+
+    model.addAttribute("roles", user.get().getRoles());
+
     return "pages/show";
-    }
+  }
 
-@ModelAttribute("servletPath")
+  @ModelAttribute("servletPath")
   String getRequestServletPath(HttpServletRequest request) {
     return request.getServletPath();
 

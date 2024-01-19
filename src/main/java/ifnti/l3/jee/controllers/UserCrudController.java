@@ -16,20 +16,29 @@ import ifnti.l3.jee.repositories.UserRepository;
 
 @RestController
 public class UserCrudController {
+    // private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
     UserRepository userRepository;
+
     @PostMapping("/user/create")
-    public List<String> createUser(@RequestBody User user)  {
+    public List<String> createUser(@RequestBody User user) {
+        // Create an encoder with strength 16
+
         List<String> list = new ArrayList<>();
         try {
 
+            if (userRepository.existsByEmail(user.getEmail())) {
+                list.add("email_error");
+                return list;
+            }
+
+            // user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
             userRepository.save(user);
 
             list.add("success");
 
-        
         } catch (Exception e) {
 
             list.add("error");
@@ -37,32 +46,28 @@ public class UserCrudController {
         }
 
         return list;
-   
-        
+
     }
 
-     @PostMapping("/user/delete/{id}")
-    public List<String> deleteUser(@PathVariable String id)  {
+    @PostMapping("/user/delete/{id}")
+    public List<String> deleteUser(@PathVariable String id) {
 
         List<String> list = new ArrayList<>();
 
         try {
-            
-        list.add("success");
-        userRepository.deleteById(Long.parseLong(id));
+
+            list.add("success");
+            userRepository.deleteById(Long.parseLong(id));
 
         } catch (Exception e) {
             list.add("error");
         }
-   
-        
-
 
         return list;
     }
 
     @GetMapping("/user/get/{id}")
-    public Optional<User> getUser(@PathVariable String id)  {
+    public Optional<User> getUser(@PathVariable String id) {
 
         Optional<User> list = userRepository.findById(Long.parseLong(id));
 
@@ -70,7 +75,7 @@ public class UserCrudController {
     }
 
     @PostMapping("/user/update")
-    public List<String> updateUser(@RequestBody User userUpdated)  {
+    public List<String> updateUser(@RequestBody User userUpdated) {
 
         List<String> list = new ArrayList<>();
 
@@ -87,20 +92,16 @@ public class UserCrudController {
             user.setRoles(userUpdated.getRoles());
             user.setEnabled(userUpdated.getEnabled());
 
-        userRepository.save(user);
-        
-        list.add("success");
+            userRepository.save(user);
 
-                
-
+            list.add("success");
 
         } catch (Exception e) {
 
             list.add("error");
         }
 
-
         return list;
     }
-    
+
 }

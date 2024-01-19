@@ -16,7 +16,6 @@ var KTCreateRole = (function () {
     // // Stepper custom navigation
     try {
       submitButton.addEventListener("click", function (e) {
-
         var formData = new FormData(form);
         axios
           .post(
@@ -26,7 +25,6 @@ var KTCreateRole = (function () {
             config
           )
           .then(function (response) {
-            
             if (response.data[0] == "success") {
               /* // Hide loading indication
                             submitButton.removeAttribute(
@@ -53,12 +51,13 @@ var KTCreateRole = (function () {
             } else {
               // Show error popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
               // Hide loading indication
+              form.reset();
               submitButton.removeAttribute("data-kt-indicator");
 
               // Enable button
               submitButton.disabled = false;
               Swal.fire({
-                text: response.data.message,
+                text: "Impossible d'avoir deux rôles de même nom",
                 icon: "error",
                 buttonsStyling: false,
                 confirmButtonText: "Ok, compris!",
@@ -155,29 +154,24 @@ var KTCreateRole = (function () {
     } catch (error) {}
   };
 
-      return {
-        // Public functions
-        init: function () {
-          
-          try {
-            form = document.querySelector("#kt_modal_add_role_form");
+  return {
+    // Public functions
+    init: function () {
+      try {
+        form = document.querySelector("#kt_modal_add_role_form");
 
-            submitButton = document.getElementById("kt_modal_add_role_submit");
-            cancelButton = document.getElementById("kt_modal_add_role_cancel");
-       
-          } catch (error) {}
+        submitButton = document.getElementById("kt_modal_add_role_submit");
+        cancelButton = document.getElementById("kt_modal_add_role_cancel");
+      } catch (error) {}
 
+      /* initForm(); */
 
-          /* initForm(); */
-          
-          handleForm();
-
-        },
-      };
+      handleForm();
+    },
+  };
 })();
 
 document.addEventListener("DOMContentLoaded", function () {
   // Code à exécuter lorsque le document est chargé
   KTCreateRole.init();
-
 });

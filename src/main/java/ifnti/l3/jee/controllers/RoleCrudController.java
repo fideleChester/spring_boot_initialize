@@ -23,9 +23,13 @@ public class RoleCrudController {
 
         List<String> list = new ArrayList<>();
 
-        roleRepository.save(role);
-
-        list.add("success");
+        try {
+            roleRepository.save(role);
+            list.add("success");
+        } catch (Exception e) {
+            list.add("error");
+            // TODO: handle exception
+        }
 
         return list;
 
@@ -72,8 +76,6 @@ public class RoleCrudController {
             // TODO: handle exception
             list.add("error");
         }
-
-
 
         return list;
     }

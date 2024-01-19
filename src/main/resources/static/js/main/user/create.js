@@ -25,7 +25,6 @@ var KTCreateUser = (function () {
             config
           )
           .then(function (response) {
-            
             if (response.data[0] == "success") {
               /* // Hide loading indication
                             submitButton.removeAttribute(
@@ -48,6 +47,16 @@ var KTCreateUser = (function () {
                   form.reset();
                   location.reload();
                 }
+              });
+            } else if (response.data[0] == "email_error") {
+              Swal.fire({
+                text: "L'email est déjà utilisé",
+                icon: "error",
+                buttonsStyling: false,
+                confirmButtonText: "Ok, compris!",
+                customClass: {
+                  confirmButton: "btn btn-primary",
+                },
               });
             } else {
               // Show error popup. For more info check the plugin's official documentation: https://sweetalert2.github.io/
@@ -154,24 +163,22 @@ var KTCreateUser = (function () {
     } catch (error) {}
   };
 
-      return {
-        // Public functions
-        init: function () {
-          try {
-            form = document.querySelector("#kt_modal_add_user_form");
-            submitButton = document.getElementById("kt_modal_add_user_submit");
-            cancelButton = document.getElementById("kt_modal_add_user_cancel");
-          } catch (error) {}
+  return {
+    // Public functions
+    init: function () {
+      try {
+        form = document.querySelector("#kt_modal_add_user_form");
+        submitButton = document.getElementById("kt_modal_add_user_submit");
+        cancelButton = document.getElementById("kt_modal_add_user_cancel");
+      } catch (error) {}
 
-
-          /* initForm(); */
-          handleForm();
-        },
-      };
+      /* initForm(); */
+      handleForm();
+    },
+  };
 })();
 
 document.addEventListener("DOMContentLoaded", function () {
   // Code à exécuter lorsque le document est chargé
   KTCreateUser.init();
-
 });

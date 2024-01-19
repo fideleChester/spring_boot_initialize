@@ -7,124 +7,106 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name="users")
-public class User  {		
-	
+@Table(name = "users")
+public class User {
+
 	@Id
-	@Column(name = "id",insertable=true)
+	@Column(name = "id", insertable = true)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Basic
-	@Column( nullable = true,insertable=true)
+	@Column(nullable = true, insertable = true)
 	private String firtname;
-        
-        @Basic
-	@Column( nullable = false,insertable=true)
+
+	@Basic
+	@Column(nullable = false, insertable = true)
 	private boolean enabled;
-        
 
 	@Basic
-	@Column( nullable = true,insertable=true)
+	@Column(nullable = true, insertable = true)
 	private String lastname;
-	
-	@Basic
-	@Column(nullable = false,insertable=true)
-	private String email;
-	
 
+	@Basic
+	@Column(nullable = false, insertable = true)
+	private String email;
 
 	public String getEmail() {
 		return email;
 	}
 
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 
 	public String getUsername() {
 		return this.username;
 	}
 
-
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
 
 	public String getPassword() {
 		return this.password;
 	}
 
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-        
-        public boolean getEnabled() {
+
+	public boolean getEnabled() {
 		return this.enabled;
 	}
-
 
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
 	}
 
+	@Basic
+	@Column(length = 30, nullable = false, insertable = true, unique = true)
+	private String username;
 
 	@Basic
-	@Column(length = 30, nullable = false,insertable=true ,unique=true)
-	private String username;
-	
-	@Basic
-	@Column(length = 30, nullable = false,insertable=true ,unique=true)
+	@Column(nullable = false, insertable = true, unique = true)
 	private String password;
 
 	@Basic
-	@Column(length = 8, nullable = true,insertable=true ,unique=true)
+	@Column(length = 8, nullable = true, insertable = true, unique = true)
 	private String contact;
 
+	@ManyToMany
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 
-	
+	private List<Role> roles = new ArrayList<>();
 
-	  @ManyToMany
-	  @JoinTable(name = "user_role",
-	             joinColumns = @JoinColumn(name = "user_id"),
-	             inverseJoinColumns = @JoinColumn(name = "role_id"))
-
-	 private List<Role> roles = new ArrayList<>();
-	
-	
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
-
 
 	public List<Role> getRoles() {
 		return this.roles;
 	}
 
-
-	public User(String lastname, String firtname,  String email,String password,String username,String contact) {
+	public User(String lastname, String firtname, String email, String password, String username, String contact) {
 		super();
 		this.lastname = lastname;
 		this.firtname = firtname;
-		this.email= email;
+		this.email = email;
 		this.contact = contact;
 		this.password = password;
 		this.username = username;
 		this.enabled = false;
 	}
-	
 
 	public User() {
-		
+
 	}
-	
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", firtname=" + firtname + ", firtname=" + lastname + ", email=" + email + ", contact=" + contact + ", username=" + username + ", roles=" + roles + "]";
+		return "User [id=" + id + ", firtname=" + firtname + ", firtname=" + lastname + ", email=" + email
+				+ ", contact=" + contact + ", username=" + username + ", roles=" + roles + "]";
 	}
 
 	public Long getId() {
@@ -158,7 +140,5 @@ public class User  {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-
-
 
 }
